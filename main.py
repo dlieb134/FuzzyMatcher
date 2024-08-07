@@ -85,7 +85,7 @@ def process_suppliers(input_file: str, output_file: str) -> None:
 
 
 if __name__ == "__main__":
-    input_file = "supps.csv"
+    input_file = "ARS Supplier Norm 0807.csv"
     output_file = "output_suppliers_score_90.xlsx"
     start_time = time.time()
     process_suppliers(input_file, output_file)
