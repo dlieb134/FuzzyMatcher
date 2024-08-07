@@ -30,9 +30,9 @@ def find_matches_and_scores(args) -> tuple:
     index, normalized_name, original_data = args
     matches = []
     for idx, row in original_data.iterrows():
-        score = fuzz.token_set_ratio(normalized_name, normalize_name(row['NAME1']))
+        score = fuzz.token_set_ratio(normalized_name, normalize_name(row['supplier_name']))
         if score > 89:
-            matches.append(f"{row['NAME1']}|{row['VENDOR_ID']}|{idx}|{score}")
+            matches.append(f"{row['supplier_name']}|{row['VENDOR_ID']}|{idx}|{score}")
     return index, ', '.join(matches)
 
 
@@ -52,7 +52,7 @@ def process_suppliers(input_file: str, output_file: str) -> None:
     print("Data loaded successfully.")
 
     # Normalize names
-    data['Normalized_Name'] = data['NAME1'].apply(normalize_name)
+    data['Normalized_Name'] = data['supplier_name'].apply(normalize_name)
     print("Normalized names.")
 
     total_rows = data.shape[0]
